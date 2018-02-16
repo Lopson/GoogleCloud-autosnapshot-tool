@@ -1,6 +1,5 @@
-
-
 #! /bin/bash
+
 # Create the snapshots
 
 gcloud compute disks list --format='value(name,zone)'| while read DISK_NAME ZONE; do
