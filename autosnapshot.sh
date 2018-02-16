@@ -12,12 +12,9 @@ done
 EXPIRED=`date -d "-29 days"  +%Y-%m-%d `
 echo "Expiration date is set to $EXPIRED"
 
-#Beware! Without further filtering it's deleting ALL the snapshots present, not only the ones created by the script. In case
-#you want to limit the snapshot cleanup to only the ones created by it swap the "--filter="creationTimesTamp>$EXPIRED" below 
-#with this one:   --filter="creationTimesTamp>$EXPIRED AND name~"autosnapshot*"
+#list only the snapshots created by this script that are more than a month old.
 
-
-gcloud compute snapshots list --filter="creationTimesTamp>$EXPIRED" --uri | while read SNAPSHOT_URI; do
+gcloud compute snapshots list --filter="creationTimesTamp>$EXPIRED AND name~"autosnapshot*" --uri | while read SNAPSHOT_URI; do
     echo "Deleting snapshot: $SNAPSHOT_URI"
     gcloud compute snapshots delete $SNAPSHOT_URI --quiet
 
