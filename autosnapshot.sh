@@ -13,7 +13,7 @@ echo "Expiration date is set to $EXPIRED"
 
 #list only the snapshots created by this script that are more than a month old and delete them
 
-gcloud compute snapshots list --filter="creationTimesTamp>$EXPIRED AND name~"autosnapshot*" --uri | while read SNAPSHOT_URI; do
+gcloud compute snapshots list --filter="creationTimesTamp<$EXPIRED AND name~"autosnapshot*" --uri | while read SNAPSHOT_URI; do
     echo "Deleting snapshot: $SNAPSHOT_URI"
     gcloud compute snapshots delete $SNAPSHOT_URI --quiet
 
