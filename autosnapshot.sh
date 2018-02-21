@@ -7,7 +7,7 @@ done
 
 # Set the expiration date so snapshots older than a week will be deleted
 
-EXPIRED=$(date -d "-7 days" +%Y-%m-%d)
+EXPIRED=$(date -d "-7 days" +%Y-%-m-%d)
 echo "##################################"
 echo " \n"
 echo "Expiration date is set to $EXPIRED"
