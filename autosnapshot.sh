@@ -15,7 +15,7 @@ echo "##################################"
 echo " \n"
 
 #Beware! Without further filtering it's deleting ALL the snapshots present, not only the ones created by the script. In case
-#you want to limit the snapshot cleanup to only the ones created by it swap the "--filter="creationTimesTamp<$EXPIRED" below
+#you want to limit the snapshot cleanup to only the ones created by it swap the "--filter="creationTimestamp<$EXPIRED" below
 #with this one: --filter="creationTimestamp<$EXPIRED AND name~"autosnapshot*"
 
 # Delete the snapshots
