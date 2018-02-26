@@ -2,7 +2,7 @@
 # Create the snapshots
 
 gcloud compute disks list --format='value(name,zone)'| while read DISK_NAME ZONE; do
-gcloud compute disks snapshot $DISK_NAME --snapshot-names autosnapshot-${DISK_NAME:0:15}-$(date "+%Y-%m-%d-%s") --zone $ZONE
+    gcloud compute disks snapshot $DISK_NAME --snapshot-names autosnapshot-${DISK_NAME:0:15}-$(date "+%Y-%m-%d-%s") --zone $ZONE
 done
 
 # Set the expiration date so snapshots older than a week will be deleted
@@ -22,6 +22,5 @@ echo " \n"
 
 gcloud compute snapshots list --filter="creationTimestamp<$EXPIRED" --uri | while read SNAPSHOT_URI; do
         echo "Deleting snapshot: $SNAPSHOT_URI"
-gcloud compute snapshots delete $SNAPSHOT_URI --quiet
-
+        gcloud compute snapshots delete $SNAPSHOT_URI --quiet
 done
