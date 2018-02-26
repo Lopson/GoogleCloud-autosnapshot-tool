@@ -21,6 +21,6 @@ echo " \n"
 # Delete the snapshots
 
 gcloud compute snapshots list --filter="creationTimestamp<$EXPIRED" --uri | while read SNAPSHOT_URI; do
-        echo "Deleting snapshot: $SNAPSHOT_URI"
-        gcloud compute snapshots delete $SNAPSHOT_URI --quiet
+    echo "Deleting snapshot: $SNAPSHOT_URI"
+    gcloud compute snapshots delete $SNAPSHOT_URI --quiet
 done
