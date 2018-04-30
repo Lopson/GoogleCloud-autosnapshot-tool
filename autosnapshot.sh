@@ -145,7 +145,7 @@ function delete_disk_expired_snapshots {
     # Cycle through all snapshots to delete and delete them.
     echo "Deleting old snapshots of disk $disk_name.";
     for current_snapshot in "${snapshots_list[@]}"; do
-        if ! gcloud compute snapshots delete $current_snapshot --quiet; then
+        if ! gcloud compute snapshots delete "$current_snapshot" --quiet; then
             echo "ERROR: Couldn't delete snapshot $current_snapshot belonging to disk $disk_name.";
             return $ERROR_DELETING_SNAPSHOT;
         fi;
